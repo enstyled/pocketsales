@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Pocket Sales</title>
+
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">	
+	<meta name="description" content="Tiny application for tracking your sales on the Envato Marketplaces" />
+	<meta name="author" content="Emil Nikov">
+	
+	<link rel='stylesheet' href='css/style.css'>
+	
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" href="img/ios_icon.png" />
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<script type="text/javascript">	
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-29563000-1']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
+
+
+<body class="loading">
+
+
+
+	<div id="content"></div>
+	
+	
+	<script type="text/template" id="homepage">
+		<div class="top">
+			<div class="wrapper">
+				<h1>Pocket sales</h1>
+				<h2>Track your sales on the go.</h2>
+			</div>
+		</div>		
+		
+		<div class="bottom">
+			<div class="wrapper">
+				<p class="left"><strong>Open this page on your mobile device.</strong></p>
+				<p class="right">Tiny app made by <strong><a href="http://themeforest.net/user/enstyled">enstyled</a></strong></p>
+			</div>
+		</div>
+	</script>		<!-- #homepage -->
+	
+	
+	<script type="text/template" id="login">
+		<header class="text-center">
+			<h1>Pocket Sales</h1>
+		</header>
+		
+		<form action="" method="post" id="login-form">
+			<fieldset>
+				<input type="text" placeholder="Username" name="username" autofocus />
+			</fieldset>
+			
+			<fieldset>
+				<input type="text" placeholder="API key" name="key" />
+			</fieldset>
+			
+			<fieldset>
+				<button type="submit">Login</button>
+			</fieldset>
+		</form>
+				
+		<footer>Tiny app made by <a href="http://themeforest.net/user/enstyled" target="_blank">enstyled</a></footer>
+	</script>		<!-- #login -->
+	
+	
+	<script type="text/template" id="user">
+		<header>
+			<a href="#" id="signout"><i class="fa fa-power-off"></i></a>	
+			<img src="{{ user.image }}" alt="" />
+			<h1>{{ user.username }}</h1>
+			<p>{{ user.sales }} sales</p>
+		</header>
+		
+		<table id="stats">
+			<tr>
+				<td><strong>{{ account.monthly.sales }}</strong> sales</td>
+				<td colspan="2"><strong>${{ account.total_earnings }}</strong> earnings</td>
+				<td><strong>{{ account.commission }}%</strong> commision</td>
+			</tr>
+		</table>
+		
+		<ul id="statement">
+			{{ #statement }}
+				<li {{ fresh }}>
+					<span>{{ amount }}</span>
+					<strong class="{{ kind }}">{{ kind }}</strong>
+					{{ description }}
+				</li>
+			{{ /statement }}
+		</ul>
+		
+		<footer>Tiny app made by <a href="http://themeforest.net/user/enstyled" target="_blank">enstyled</a></footer>
+	</script>		<!-- #user -->
+
+
+	
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src='js/jquery.cookie.js'></script>
+	<script src='js/cache.min.js'></script>
+	<script src='js/mustache.js'></script>
+	<script src='js/shake.js'></script>
+	<script src='js/app.js'></script>
+
+</body>
+</html>
