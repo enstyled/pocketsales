@@ -1,12 +1,10 @@
 $(function () {
 
 	Cache.expiry = 300000;	// 5 minutes
-	
 	$.cookie.defaults = { expires: 365 };
 	
 	var URL = "http://marketplace.envato.com/api/v3/";
 	var username, key;
-	
 	
 	
 	var App = {
@@ -21,7 +19,6 @@ $(function () {
 		},
 		
 		
-		
 		/* Show homepage */
 		showHomepage: function() {
 			var template = $('#homepage').html();
@@ -30,13 +27,11 @@ $(function () {
 		},
 		
 		
-		
 		// Bind events
 		bindEvents: function () {		
 			$('body').on('submit', '#login-form', this.validateLogin.bind(this));
 			$('body').on('click', '#signout', this.logout.bind(this));
 		},
-		
 		
 		
 		// Check authentication
@@ -52,14 +47,12 @@ $(function () {
 		},
 		
 		
-		
 		// Login page
 		showLogin: function() {
 			var template = $('#login').html();				
 			$('#content').html(template);
 			$('body').removeClass('loading');
 		},
-		
 		
 		
 		// Login validation
@@ -75,7 +68,6 @@ $(function () {
 			
 			return false;
 		},
-		
 		
 		
 		// Authorize
@@ -98,7 +90,6 @@ $(function () {
 		},
 		
 		
-		
 		// Logout
 		logout: function() {
 			$.removeCookie('username');
@@ -107,7 +98,6 @@ $(function () {
 			this.showLogin();
 			return false;
 		},
-		
 		
 		
 		// Get user data
@@ -134,7 +124,6 @@ $(function () {
 			    });
 			}
 		},
-		
 		
 		
 		// Format data
