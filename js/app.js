@@ -5,11 +5,10 @@ $(function () {
 	
 	var username, key;
 	var URL = "http://marketplace.envato.com/api/v3/";
-	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 	
 	var App = {
 		init: function() {			
-			if( ! isMobile ) {
+			if( ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				this.showPage('homepage', true);
 				return false;
 			}
