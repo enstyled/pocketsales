@@ -81,6 +81,7 @@ $(function () {
 			$.removeCookie('api-key');
 			
 			this.isAuthenticated();
+			return false;
 		},
 		
 		getData: function() {			
