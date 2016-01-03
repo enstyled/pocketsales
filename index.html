@@ -6,7 +6,7 @@
 
 	<title>Pocket Sales</title>
 
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">	
 	<meta name="description" content="Tiny application for tracking your sales on the Envato Marketplaces" />
 	<meta name="author" content="Emil Nikov">
 	
@@ -15,8 +15,6 @@
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link rel="apple-touch-icon-precomposed" href="img/ios_icon.png" />
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	
-	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	
 	<script type="text/javascript">	
 		var _gaq = _gaq || [];
@@ -32,90 +30,69 @@
 </head>
 
 
-<body class="loading">
+<body class="{{ app.state }}">
 
-
-
-	<div id="content"></div>
+	<template v-if="mobile">
+		<template v-if="logged">
+			<header>
+				<a href="#" id="signout" @click.prevent="logout"><i class="fa fa-power-off"></i></a>	
+				<img src="{{ user.details.image }}" alt="" width="48" height="48" />
+				<h1>{{ user.username }}</h1>
+				<p>{{ user.details.sales }} sales</p>
+			</header>
+			
+			<table id="stats">
+				<tr>
+					<td><strong>{{ user.earnings.sales }}</strong> sales</td>
+					<td colspan="2"><strong>${{ user.earnings.earnings }}</strong> earnings</td>
+					<td><strong>{{ user.details.followers }}</strong> followers</td>
+				</tr>
+			</table>
+			
+			<ul id="statement">
+				<li v-for="item in user.statement" {{ fresh }}>
+					<span>{{ item.amount }}</span>
+					<strong class="{{ item.kind }}">{{ item.kind }}</strong>
+					{{ item.description }}
+				</li>
+			</ul>
+			
+			<footer>{{{ app.credits }}}</footer>
+		</template>		
+	</template>
 	
 	
-	<script type="text/template" id="homepage">
-		<div class="top">
-			<div class="wrapper">
-				<h1>Pocket sales</h1>
-				<h2>Track your sales on the go.</h2>
-			</div>
-		</div>		
-		
-		<div class="bottom">
-			<div class="wrapper">
-				<p class="left"><strong>Open this page on your mobile device.</strong></p>
-				<p class="right">Tiny app made by <strong><a href="http://themeforest.net/user/enstyled">enstyled</a></strong></p>
+	<template v-else>
+		<div class="homepage">
+			<div class="top">
+				<div class="wrapper">
+					<h1>{{ app.title }}</h1>
+					<h2>Track your sales on the go.</h2>
+				</div>
+			</div>		
+			
+			<div class="bottom">
+				<div class="wrapper">
+					<p class="left"><strong>Open this page on your mobile device.</strong></p>
+					<p class="right">{{{ app.credits }}}</p>
+				</div>
 			</div>
 		</div>
-	</script>		<!-- #homepage -->
+	</template>
 	
 	
-	<script type="text/template" id="login">
-		<header class="text-center">
-			<h1>Pocket Sales</h1>
-		</header>
-		
-		<form action="" method="post" id="login-form">
-			<fieldset>
-				<input type="text" placeholder="Username" name="username" autofocus />
-			</fieldset>
 			
-			<fieldset>
-				<input type="text" placeholder="API key" name="key" />
-			</fieldset>
-			
-			<fieldset>
-				<button type="submit">Login</button>
-			</fieldset>
-		</form>
-				
-		<footer>Tiny app made by <a href="http://themeforest.net/user/enstyled" target="_blank">enstyled</a></footer>
-	</script>		<!-- #login -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.5.1/vue-resource.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.min.js"></script>
+	<script src='js/shake.js'></script>
+	<script src="js/main.js"></script>
 	
-	
-	<script type="text/template" id="user">
-		<header>
-			<a href="#" id="signout"><i class="fa fa-power-off"></i></a>	
-			<img src="{{ user.image }}" alt="" />
-			<h1>{{ user.username }}</h1>
-			<p>{{ user.sales }} sales</p>
-		</header>
-		
-		<table id="stats">
-			<tr>
-				<td><strong>{{ account.monthly.sales }}</strong> sales</td>
-				<td colspan="2"><strong>${{ account.total_earnings }}</strong> earnings</td>
-				<td><strong>{{ account.commission }}%</strong> commision</td>
-			</tr>
-		</table>
-		
-		<ul id="statement">
-			{{ #statement }}
-				<li {{ fresh }}>
-					<span>{{ amount }}</span>
-					<strong class="{{ kind }}">{{ kind }}</strong>
-					{{ description }}
-				</li>
-			{{ /statement }}
-		</ul>
-		
-		<footer>Tiny app made by <a href="http://themeforest.net/user/enstyled" target="_blank">enstyled</a></footer>
-	</script>		<!-- #user -->
-
-
-	
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src='js/jquery.cookie.js'></script>
 	<script src='js/cache.min.js'></script>
-	<script src='js/mustache.js'></script>
-	<script src='js/shake.js'></script>
-	<script src='js/app.js'></script>
+	<script src='js/mustache.js'></script>	
+	<script src='js/app.js'></script> -->
 
 </body>
 </html>
