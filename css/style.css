@@ -271,7 +271,7 @@ footer a {
 	
 .homepage {
 	background: #ccc url(../img/bg1.jpg) center no-repeat;
-	background-size: 100%;
+	background-size: cover;
 	}
 	
 .homepage .top {
